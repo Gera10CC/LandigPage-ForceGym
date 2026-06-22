@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 const History = () => {
   const [showFull, setShowFull] = useState(false);
 
+  const CLOUDINARY_BASE = 'https://res.cloudinary.com/dmrcx0h4a/image/upload';
+
   const fullContent = useMemo(() => (
     <div className="space-y-6 animate-fadeIn">
       <p className="text-white/90 text-lg md:text-xl leading-relaxed">
@@ -19,26 +21,27 @@ const History = () => {
   return (
     <section
       id="historia"
-      className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden scroll-mt-[80px]"
+      className="relative min-h-screen flex items-center justify-center text-white overflow-hidden scroll-mt-[80px]"
     >
-      {/* Fondo corregido */}
+      {/* Fondo con imagen */}
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/LandingPage/gyminicio.webp')",
+            backgroundImage: `url('${CLOUDINARY_BASE}/v1781990408/gyminicio_iw2wo5.webp')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundAttachment: "fixed",
+            backgroundRepeat: "no-repeat",
           }}
         />
-        <div className="absolute inset-0 bg-black/70"></div>
+        {/* Gradiente más fuerte en la parte superior también */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80"></div>
       </div>
 
       {/* Contenido principal */}
-      <div className="relative z-30 text-center px-4 md:px-20 max-w-4xl w-full">
+      <div className="relative z-30 text-center px-4 md:px-20 max-w-4xl w-full py-8">
         <div className="mb-8 md:mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-2">
+          <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow-lg">
             NUESTRA <span className="text-amber-400">HISTORIA</span>
           </h2>
           <div className="w-20 h-1 bg-amber-400 mx-auto mt-3 md:mt-4"></div>

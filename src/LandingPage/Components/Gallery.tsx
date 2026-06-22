@@ -11,17 +11,20 @@ const Gallery = () => {
   const sliderRef = useRef<SliderType | null>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
+  // Base URL de tu Cloudinary
+  const CLOUDINARY_BASE = 'https://res.cloudinary.com/dmrcx0h4a/image/upload';
+
   const galleryPhotos = [
-    { img: "/LandingPage/grupo-1.webp" },
-    { img: "/LandingPage/grupo-2.webp" },
-    { img: "/LandingPage/grupo-3.webp" },
-    { img: "/LandingPage/grupo-4.webp" },
-    { img: "/LandingPage/grupo-5.webp" },
-    { img: "/LandingPage/grupo-6.webp" },
-    { img: "/LandingPage/grupo-7.webp" },
-    { img: "/LandingPage/grupo-8.webp" },
-    { img: "/LandingPage/grupo-9.webp" },
-    { img: "/LandingPage/grupo-10.webp" },
+    { img: `${CLOUDINARY_BASE}/v1781989107/grupo-5_dksea4.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989107/grupo-3_o1zbjl.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989107/grupo-4_yr8q5r.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989104/grupo-1_e3dx8h.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989101/grupo-2_cjximf.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989099/grupo-7_syhmgh.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989099/grupo-6_lkmdjp.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989099/grupo-9_x06vxf.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989098/grupo-8_cbfho8.webp` },
+    { img: `${CLOUDINARY_BASE}/v1781989097/grupo-10_e2yumz.webp` },
   ];
 
   const settings = {
@@ -81,6 +84,8 @@ const Gallery = () => {
                   <img 
                     src={photo.img} 
                     alt={`Grupo Force Gym ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto max-h-[70vh] object-contain mx-auto rounded-lg"
                   />
                 </div>
@@ -89,6 +94,7 @@ const Gallery = () => {
           </Slider>
         </div>
 
+        {/* Miniaturas */}
         <div className="hidden md:grid grid-cols-5 gap-2 mt-4">
           {galleryPhotos.map((photo, index) => (
             <div 
@@ -99,6 +105,8 @@ const Gallery = () => {
               <img 
                 src={photo.img} 
                 alt={`Miniatura ${index + 1}`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-24 object-cover cursor-pointer"
               />
             </div>

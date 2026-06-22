@@ -5,7 +5,7 @@ const Pricing = () => {
     { name: "QUINCENA", price: "₡11,000" },
     { name: "SEMANA", price: "₡7,000" },
     { name: "SESIÓN", price: "₡2,500" },
-    { name: "LIMITADA", price: "₡15,000", note: "(8am-10am / 2pm-4pm)" },
+    { name: "POLICÍA", price: "₡12,000" },
   ];
 
   return (
