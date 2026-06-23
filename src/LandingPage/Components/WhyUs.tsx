@@ -13,7 +13,7 @@ const WhyUs = () => {
   const cardsData: CardItem[] = useMemo(
     () => [
       {
-        title: 'INSTALACIONES PREMIUM',
+        title: 'INSTALACIONES',
         images: [
           `${CLOUDINARY_BASE}/v1781989105/forcegym_pdpn69.webp`,
           `${CLOUDINARY_BASE}/v1781989142/IMG_6978_xirzsb.webp`,
@@ -35,28 +35,11 @@ const WhyUs = () => {
           `${CLOUDINARY_BASE}/v1781989118/IMG_6995_f0jgdd.webp`,
         ],
         descriptions: [
-          'Equipos de última generación',
-          'Espacios diseñados para el alto rendimiento',
-          'Áreas especializadas para cada disciplina',
-          'Ambiente profesional y motivador',
-          'Tecnología de punta',
-          'Instalaciones de primer nivel',
-          'Zonas de entrenamiento exclusivas',
-          'Equipamiento premium',
-          'Espacios amplios y modernos',
-          'Área de cardio avanzada',
-          'Zona de pesas profesional',
-          'Salas de entrenamiento funcional',
-          'Área de estiramiento',
-          'Vestidores de lujo',
-          'Zona de recuperación',
-          'Espacio para entrenamiento personalizado',
-          'Área de crossfit',
-          'Instalaciones completamente equipadas'
+          
         ]
       },
       {
-        title: 'ENTRENADORES ÉLITE',
+        title: 'ENTRENADORAS CERTIFICADAS',
         images: [
           `${CLOUDINARY_BASE}/v1781989117/coach_m7bvjv.webp`,
           `${CLOUDINARY_BASE}/v1781989109/andrea_zql9y1.webp`,
@@ -64,10 +47,10 @@ const WhyUs = () => {
           `${CLOUDINARY_BASE}/v1781989108/gypsy_hlr0vd.webp`
         ],
         descriptions: [
-          'Equipo de entrenadores certificados',
+          'Equipo de entrenadoras certificadas',
           'Andrea Chacón: Especialista en entrenamiento funcional',
           'Kimberly Chacón: Experta en consultas personalizadas',
-          'Gipsy López: Nutricionista y entrenadora certificada'
+          'Gipzy López: Nutricionista y entrenadora certificada'
         ]
       },
       {
@@ -76,7 +59,7 @@ const WhyUs = () => {
           `${CLOUDINARY_BASE}/v1781989107/resultados_o6mtz4.webp`,
         ],
         descriptions: [
-          'Transformación garantizada con nuestro método'
+         
         ]
       }
     ],
