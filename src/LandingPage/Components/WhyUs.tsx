@@ -50,7 +50,7 @@ const WhyUs = () => {
           'Equipo de entrenadoras certificadas',
           'Andrea Chacón: Especialista en entrenamiento funcional',
           'Kimberly Chacón: Experta en consultas personalizadas',
-          'Gipzy López: Nutricionista y entrenadora certificada'
+          'Gipzy López: Entrenadora certificada con conocimientos en nutrición'
         ]
       },
       {
