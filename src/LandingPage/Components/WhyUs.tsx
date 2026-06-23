@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type CardItem = {
   images: string[];
@@ -35,6 +35,24 @@ const WhyUs = () => {
           `${CLOUDINARY_BASE}/v1781989118/IMG_6995_f0jgdd.webp`,
         ],
         descriptions: [
+          'Equipos de última generación',
+          'Espacios diseñados para el alto rendimiento',
+          'Áreas especializadas para cada disciplina',
+          'Ambiente profesional y motivador',
+          'Tecnología de punta',
+          'Instalaciones de primer nivel',
+          'Zonas de entrenamiento exclusivas',
+          'Equipamiento premium',
+          'Espacios amplios y modernos',
+          'Área de cardio avanzada',
+          'Zona de pesas profesional',
+          'Salas de entrenamiento funcional',
+          'Área de estiramiento',
+          'Vestidores de lujo',
+          'Zona de recuperación',
+          'Espacio para entrenamiento personalizado',
+          'Área de crossfit',
+          'Instalaciones completamente equipadas'
         ]
       },
       {
@@ -58,6 +76,7 @@ const WhyUs = () => {
           `${CLOUDINARY_BASE}/v1781989107/resultados_o6mtz4.webp`,
         ],
         descriptions: [
+          'Transformación garantizada con nuestro método'
         ]
       }
     ],
@@ -67,7 +86,11 @@ const WhyUs = () => {
   const [currentIndices, setCurrentIndices] = useState(
     cardsData.map(() => 0)
   );
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  // Estado para swipe
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const navigate = useCallback((cardIndex: number, direction: 'next' | 'prev') => {
     setCurrentIndices(prev => {
@@ -92,22 +115,38 @@ const WhyUs = () => {
     });
   }, []);
 
-  useEffect(() => {
-    const intervals: NodeJS.Timeout[] = [];
-    
-    cardsData.forEach((_, cardIndex) => {
-      if (hoveredCard === cardIndex) {
-        const interval = setInterval(() => {
-          navigate(cardIndex, 'next');
-        }, 3000);
-        intervals.push(interval);
-      }
-    });
+  // Manejadores de swipe táctil
+  const handleTouchStart = (cardIndex: number, e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setActiveCard(cardIndex);
+  };
 
-    return () => {
-      intervals.forEach(interval => clearInterval(interval));
-    };
-  }, [cardsData, navigate, hoveredCard]);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (cardIndex: number) => {
+    if (!touchStartX || !touchEndX) return;
+    
+    const distance = touchStartX - touchEndX;
+    const isSwipe = Math.abs(distance) > 50; // Umbral mínimo para considerar swipe
+    
+    if (isSwipe) {
+      if (distance > 0) {
+        // Swipe hacia la izquierda → siguiente imagen
+        navigate(cardIndex, 'next');
+      } else {
+        // Swipe hacia la derecha → imagen anterior
+        navigate(cardIndex, 'prev');
+      }
+    }
+    
+    setTouchStartX(null);
+    setTouchEndX(null);
+    setActiveCard(null);
+  };
+
+  // Quitamos el useEffect del autoplay
 
   return (
     <section className="py-12 md:py-20 bg-black">
@@ -124,8 +163,9 @@ const WhyUs = () => {
             <div 
               key={cardIndex} 
               className="relative h-80 sm:h-96 rounded-xl overflow-hidden bg-gray-900 shadow-lg hover:shadow-yellow-500/30 transition-shadow"
-              onMouseEnter={() => setHoveredCard(cardIndex)}
-              onMouseLeave={() => setHoveredCard(null)}
+              onTouchStart={(e) => handleTouchStart(cardIndex, e)}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={() => handleTouchEnd(cardIndex)}
             >
               <div className="relative w-full h-full overflow-hidden">
                 {card.images.map((image, imgIndex) => (
@@ -135,7 +175,6 @@ const WhyUs = () => {
                     alt={`${card.title} ${imgIndex + 1}`}
                     loading="lazy"
                     decoding="async"
-                    // CAMBIO 1: brightness más claro (85% en lugar de 75%)
                     className={`absolute w-full h-full object-cover brightness-[0.85] transition-opacity duration-700 ${
                       currentIndices[cardIndex] === imgIndex ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -143,7 +182,7 @@ const WhyUs = () => {
                 ))}
               </div>
 
-              {/* CAMBIO 2: Gradiente más suave y texto con sombra */}
+              {/* Gradiente y texto */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end pb-8 pt-4 px-4">
                 <h3 className="text-xl md:text-2xl font-bold text-yellow-400 mb-1 drop-shadow-lg">
                   {card.title}

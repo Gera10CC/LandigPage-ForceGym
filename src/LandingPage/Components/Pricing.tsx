@@ -1,6 +1,7 @@
 const Pricing = () => {
   const tarifas = [
     { name: "MENSUALIDAD", price: "₡17,000" },
+    { name: "3 X SEMANA", price: "₡13,500" },
     { name: "ESTUDIANTE", price: "₡14,500", note: "(Instituciones Públicas)" },
     { name: "QUINCENA", price: "₡11,000" },
     { name: "SEMANA", price: "₡7,000" },

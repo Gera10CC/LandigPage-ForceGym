@@ -25,10 +25,13 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Videos en Cloudinary
-  const VIDEO_HORIZONTAL = 'https://res.cloudinary.com/dmrcx0h4a/video/upload/v1782158614/comprimidoHori_mptgzn.mp4';
-  const VIDEO_VERTICAL = 'https://res.cloudinary.com/dmrcx0h4a/video/upload/v1782158215/Comprimido_mq9min.mp4';
-  const FALLBACK_IMAGE = 'https://res.cloudinary.com/dmrcx0h4a/image/upload/v1781989121/IMG_6988_j6vh0p.webp';
+  // Videos en Cloudinary con optimización automática
+  // q_auto: ajusta calidad según el dispositivo y conexión
+  // f_auto: entrega el mejor formato (WebP, MP4, etc.)
+  // w_auto: ajusta el ancho automáticamente
+  const VIDEO_HORIZONTAL = 'https://res.cloudinary.com/dmrcx0h4a/video/upload/q_auto,f_auto,w_auto/v1782158614/comprimidoHori_mptgzn.mp4';
+  const VIDEO_VERTICAL = 'https://res.cloudinary.com/dmrcx0h4a/video/upload/q_auto,f_auto,w_auto/v1782158215/Comprimido_mq9min.mp4';
+  const FALLBACK_IMAGE = 'https://res.cloudinary.com/dmrcx0h4a/image/upload/q_auto,f_auto,w_auto/v1781989121/IMG_6988_j6vh0p.webp';
 
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('historia') || document.querySelector('section');
